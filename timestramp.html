@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小小时间戳</title>
+    <link rel="stylesheet" href="./asset/2.css">
+    <style>
+        .biao{
+            border:1px;
+            
+        }
+    </style>
+</head>
+<body>
+<div class="banmian">
+    
+   <h1>小小时间戳</h1>  
+   <span>现在：</span>
+   <a id="nowts" href="#">现在的时间戳</a>
+   <span>控制</span>
+   <a href="#" id="kongzhi" onclick="kongzhianniu()">停止</a>
+   <br>
+   <span>时间戳</span>
+   <input  id="chuo">
+   <select name="" id="danwei1">
+       <option value="ms">毫秒(ms)</option>
+       <option value="s">秒(s)</option>
+   </select>
+   <button id="a">转换</button>
+   <input id="bjshijian">
+   <span>北京时间</span>
+   <br>
+    <span>时间</span>
+    <input id="beijing">北京时间
+    <button id="b">转换</button>
+    <input  id="chuoshijian">
+    <select name="" id="">
+        <option value="s">秒(s)</option>
+        <option value="ms">毫秒(ms)</option>
+    </select>
+    <p id="pp"></p>
+
+</div>
+<script scr="./scr/2.js"></script>
+<script>
+/*    var data;
+var func = function (data) {
+    var YY = date.getFullYear() + '-';
+    var MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+    var DD = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
+    var hh = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+    var mm = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+    var ss = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
+    return YY + MM + DD +" "+hh + mm + ss;
+  }//时间戳变北京时间
+ */ 
+ var timestrampa = setInterval(nowtimestramp,1000);
+ var stramp = new Date();
+ var svalue = stramp.getTime();
+ document.getElementById("chuo").value = svalue;
+var bjvalue = stramp.getFullYear() + "-" + stramp.getMonth() + "-" + stramp.getDate() +" " + stramp.getHours() + ":" + stramp.getMinutes() + ":" + stramp.getSeconds();
+ document.getElementById("beijing").value = bjvalue;
+function nowtimestramp(){
+
+    var d = new Date();
+    var timestramp = d.getTime();
+    timestramp = timestramp/1000;
+    var ntimestramp = document.getElementById("nowts").text = parseInt(timestramp);
+
+}
+function onclicka(){
+    var data = document.getElementById("chuo").value;
+    var  myselect = document.getElementById("danwei1");
+    var index = myselect.selectedIndex ; // selectedIndex代表的是你所选中项的index
+    var x = myselect.options[index].value; //拿到options的value
+    console.log("data" + data);
+    console.log("x"+x);
+    if(x == "ms"){
+       var d = new Date(parseInt(data));
+       BJtime = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate() +" " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+       document.getElementById("bjshijian").value = BJtime;
+    }
+    else{
+        data = data*1000;
+        var d = new Date(parseInt(data));
+        BJtime = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate() +" " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+        document.getElementById("bjshijian").value = BJtime;
+    }
+}
+
+
+document.getElementById("a").addEventListener("click",onclicka );
+
+document.getElementById("b").addEventListener("click", function(){
+    var data = document.getElementById("beijing").value;
+    var  myselect = document.getElementById("danwei1");
+    var index = myselect.selectedIndex ; // selectedIndex代表的是你所选中项的index
+    var x = myselect.options[index].value; //拿到options的value
+    console.log("data" + data);
+    console.log("x"+x);
+    if(x == "ms"){
+        var d = new Date(data)
+        timestamp  = d.getTime();
+        document.getElementById("chuoshijian").value = timestamp;
+    }
+    else{
+        var d = new Date(data);
+        timestamp = d.getTIme();
+        timestamp = timestamp/1000;
+        document.getElementById("chuoshijian").value = timestamp;
+
+    }
+});
+function kongzhianniu(){
+
+    if(document.getElementById("kongzhi").text == "停止"){
+
+
+        window.clearInterval(timestrampa);
+        document.getElementById("kongzhi").text = "开始";
+
+    }
+    else if(document.getElementById("kongzhi").text == "开始"){
+        timestrampa = setInterval(nowtimestramp,1000);
+        document.getElementById("kongzhi").text = "停止";
+
+    }
+
+
+};
+
+
+var pp = [{'name':'a', 'value':1}, {'name':'b', 'value':2}];
+var html = "<table border=1>";
+for (i in pp){
+
+    html += "<tr>";
+    html += "<td>";
+    html += pp[i].name ;
+    html += "</td>";
+    html += "<td>";
+    html += pp[i].value;
+    html += "</td>";
+    html += "</tr>";
+    console.log(pp[i]);
+}
+html += "</table>";
+
+document.getElementById("pp").innerHTML = html;
+
+
+</script>
+</body>
+</html>

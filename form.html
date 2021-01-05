@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单</title>
+    <link rel="stylesheet" href="./asset/css/form.css">
+</head>
+<body>
+    <div>
+        <form action="">
+            <div>
+                <label class="notred">公司名称:</label> <input type="text" name="ConpanyName"><br>
+            </div>
+            <div>
+                <span style="color: red;">*</span><label>定时重启 </label><input class="chioce" type="checkbox" id="checked" onclick="TimereStartSwitch()"><br>
+            </div>
+            <div id="restart" style="display: none;">
+                <div>
+                    <span style="color: red;">*</span><label>定时重启时间</label><input type="text" value="00:00" id="retime" onblur="JudgeTime()" onfocus="Retime()" >
+                </div>
+                <p class="hint" id="jtime"></p>
+                <div>
+                    <span style="color: red;">*</span><label>定时重启周期</label><select>
+                        <option value="">每天</option>
+                        <option value="">周一</option>
+                        <option value="">周二</option>
+                        <option value="">周三</option>
+                        <option value="">周四</option>
+                        <option value="">周五</option>
+                        <option value="">周六</option>
+                        <option value="">周日</option>
+                    </select>
+                </div>
+            </div>
+            <div> 
+                <span style="color: red;">*</span><label>显示人员名称</label><input type="checkbox"class="chioce" ><br>
+            </div>
+            <div>
+                <span style="color: red;">*</span><label>人员照片显示</label>
+                <select onfocus="PeoplePhoto()" onblur="JudgePeoplePhoto()" id="peoplephoto" placeholder="请选择">
+                    <option value="unselect"></option>
+                    <option value="diku">底库照片</option>
+                    <option value="zhuapai">抓拍照片</option>
+                    <option value="blank">不显示照片</option>
+                </select>
+                <br>
+                <p class="hint" id="jselect"></p>
+            </div>
+            <div>
+                <span style="color: red;">*</span><label>二次识别间隔</label><input id="interval" type="text" onfocus="Interval()" onblur="JedgeInterval()" placeholder="请输入二次间隔时间" class="-1em">秒
+                <p class="hint" id="jinterval"></p><br>
+            </div>
+            <div>
+                 <span style="color: red;">*</span><label>报警输入1</label> <select onblur="JudgeAlarmInput()" onfocus="AlarmInput()" name="warning1" id="alarminput" ><br>
+                    <option value="unselect"></option>    
+                    <option value="buyong">不启用</option>
+                    <option value="fire">消防信号</option>
+                    <option value="alarm">报警信号</option>
+            </select><br>
+            <p class="hint" id="jalarminput"></p>
+            </div>
+            <div>
+                <span style="color: red;">*</span><label>进入待机时间</label><input onblur="JudgeStandby()" onfocus="Standby()" placeholder="请输入待机时间" type="text" class="2em" id="standby">分钟 
+                <p class="hint" id="jstandby"></p>
+            </div>
+            <div>
+                <span style="color: red;">*</span><label>报警输入2</label> <select placeholder="请选择" name="warning1" id=""><br>
+                    <option value="none">不启用</option>
+                    <option value="fire">消防信号</option>
+                    <option value="alarm">报警信号</option>
+                </select><br>
+            </div>
+            <div>
+                <span style="color: red;"></span><label class="notred">补光亮度</label><input type="text" placeholder="请输入补光亮度"><br>
+            </div>
+            <div>
+                <label class="notred">报警输出接口</label><select name="" id="">
+                    <option value="">门铃</option>
+                    <option value="">黑名单报警</option>
+                    <option value="">门什么</option>
+                    <option value="">报警输入1</option>
+                    <option value="">报警输入2</option>
+                </select><br>
+            </div>
+            <div>
+                <label class="notred">界面自定义</label><input class="image" id="image" type="file">
+            </div>
+            <div class="save" >
+                <input type="submit" value="保存">
+            </div>
+        </form>
+    </div>
+    <script src="./src/form.js"></script>
+</body>
+</html>
